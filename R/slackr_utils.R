@@ -20,7 +20,7 @@ slackr_chtrans <- function(channels, api_token=Sys.getenv("SLACK_API_TOKEN")) {
   chan$name <- sprintf("#%s", chan$name)
   users$name <- sprintf("@%s", users$name)
 
-  chan_list <- data_frame(id=character(0), name=character(0))
+  chan_list <- tibble::tibble(id=character(0), name=character(0))
 
   if (length(chan) > 0) { chan_list <- bind_rows(chan_list, chan[, c("id", "name")])  }
   if (length(users) > 0) { chan_list <- bind_rows(chan_list, users[, c("id", "name")]) }
@@ -148,6 +148,3 @@ slackr_channel_history <- function(api_token = Sys.getenv("SLACK_API_TOKEN"),
 
   return(out)
 }
-
-
-
